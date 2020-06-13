@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- HTML 語法寫在這 -->
+  <img id="image" src="img/on.jpg">
+  <button class="button" onclick="toggleLight();">
+    ON<br>-<br>OFF
+  </button>
+  <p>請輸入關燈倒數時間</p>
+  <input type="text" id="input">
+  <div class="div" id="timer">5</div>
+</head>
+
+<body>
+  <script type="text/javascript">
+  // JavaScript 寫在這
+  var state = true;
+
+  function toggleLight() {
+    var image = document.getElementById("image");
+    state = !state;
+    image.src = state ? "img/on.jpg" : "img/off.jpg";
+  }
+
+
+  var timeLeft = 5;
+
+  function countDownTimer() {
+    timeLeft = timeLeft - 1;
+
+    if (timeLeft <= 0) {
+      document.getElementById("image").src = "img/off.jpg";
+      clearInterval(t);
+      state = !state;
+    }
+
+    document.getElementById("timer").innerHTML = timeLeft;
+  }
+
+  var t = setInterval(countDownTimer, 1000);
+  </script>
+</body>
+
+</html>
