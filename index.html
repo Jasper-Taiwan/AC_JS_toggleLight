@@ -6,12 +6,13 @@
   <title>Document</title>
   <!-- HTML 語法寫在這 -->
   <img id="image" src="img/on.jpg">
-  <button class="button" onclick="toggleLight();">
+  <button class="button" onclick="toggleLight()">
     ON<br>-<br>OFF
   </button>
   <p>請輸入關燈倒數時間</p>
   <input type="text" id="input">
-  <div class="div" id="timer">5</div>
+  <button id="button2" onclick="countDownButton()">關燈倒數按鈕</button>
+  <div class="div" id="timer"></div>
 </head>
 
 <body>
@@ -19,6 +20,7 @@
   // JavaScript 寫在這
   var state = true;
 
+  //開關燈按鈕
   function toggleLight() {
     var image = document.getElementById("image");
     state = !state;
@@ -26,22 +28,33 @@
   }
 
 
-  var timeLeft = 5;
+  //倒數時間函數
 
-  function countDownTimer() {
-    timeLeft = timeLeft - 1;
+  function countDownButton() {
+    //倒數時間
+    var timeLeft = document.getElementById("input").value;
 
-    if (timeLeft <= 0) {
-      document.getElementById("image").src = "img/off.jpg";
-      clearInterval(t);
-      state = !state;
+    if (isNaN(timeLeft)){
+      alert("Not a number");
+      return;
     }
 
-    document.getElementById("timer").innerHTML = timeLeft;
-  }
+    //倒數計時器  
+    function countDownTimer() {
+      timeLeft = timeLeft - 1;
 
-  var t = setInterval(countDownTimer, 1000);
+      if (timeLeft <= 0) {
+        document.getElementById("image").src = "img/off.jpg";
+        clearInterval(t);
+        state = !state;
+      }
+
+      document.getElementById("timer").innerHTML = timeLeft;
+    }
+    var t = setInterval(countDownTimer, 1000);
+  }
   </script>
+
 </body>
 
 </html>
