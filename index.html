@@ -12,7 +12,23 @@
   <p>請輸入關燈倒數時間</p>
   <input type="text" id="input">
   <button id="button2" onclick="countDownButton()">關燈倒數按鈕</button>
-  <div class="div" id="timer"></div>
+  <div class="div" id="timer">開始倒數</div>
+  <style>
+    .button {
+      background-color: yellow;
+      padding:10px 10px;
+      border-radius: 15px;
+      display:inline-block;
+    }
+    
+    .div{
+      background-color: yellow;
+      padding:10px 10px;
+      border-radius: 15px;
+      display:inline-block;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -32,9 +48,9 @@
 
   function countDownButton() {
     //倒數時間
-    var timeLeft = document.getElementById("input").value;
+    var timeLeft = parseInt(document.getElementById("input").value);
 
-    if (isNaN(timeLeft)){
+    if (isNaN(timeLeft)) {
       alert("Not a number");
       return;
     }
@@ -46,15 +62,17 @@
       if (timeLeft <= 0) {
         document.getElementById("image").src = "img/off.jpg";
         clearInterval(t);
+        document.getElementById("input").value ="";
         state = !state;
       }
 
       document.getElementById("timer").innerHTML = timeLeft;
     }
+
+    //開始倒數
     var t = setInterval(countDownTimer, 1000);
   }
   </script>
-
 </body>
 
 </html>
